@@ -148,6 +148,7 @@ This project is licensed under the **MIT License**.
 ---
 
 📌 **Author:** Verkyav Peter\
+🐍 **LinkedIn:** [https://www.linkedin.com/in/verkyav-peter/](https://www.linkedin.com/in/verkyav-peter/)\
 🐍 **GitHub:** [github.com/cleancodelover](https://github.com/cleancodelover)\
 📧 **Contact:** [verkyavpeter@gmail.com](mailto\:verkyavpeter@gmail.com)
 
