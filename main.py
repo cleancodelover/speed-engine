@@ -1,5 +1,5 @@
 from db_engine.connection import DatabaseConnection
-from db_engine.models import Model
+from db_engine.model import Model
 from db_engine.query_builder import QueryBuilder
 from db_engine.session import Session
 

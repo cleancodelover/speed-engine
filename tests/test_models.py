@@ -1,5 +1,5 @@
 import unittest
-from db_engine.models import Model
+from db_engine.model import Model
 from db_engine.connection import DatabaseConnection
 
 class TestORM(unittest.TestCase):

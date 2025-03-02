@@ -1,4 +1,4 @@
-from db_engine.models import Model
+from db_engine.model import Model
 
 
 class Session:
