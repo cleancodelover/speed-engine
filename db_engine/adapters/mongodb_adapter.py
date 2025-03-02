@@ -1,3 +1,6 @@
+from db_engine.adapters.base_adapter import BaseAdapter
+
+
 class MongoDBAdapter:
     def __init__(self, db_connection, collection_name):
         self.db = db_connection
