@@ -1,23 +1,37 @@
 from db_engine.adapters.base_adapter import BaseAdapter
 
 
-class MongoDBAdapter:
-    def __init__(self, db_connection, collection_name):
-        self.db = db_connection
-        self.collection = self.db[collection_name]
+class MongoDBAdapter(BaseAdapter):
+    def __init__(self):
+        self.client = None
+        self.db = None
     
-    def insert(self, document):
-        """Insert a document into MongoDB"""
-        self.collection.insert_one(document)
+    def connect(self, **kwargs):
+        from pymongo import MongoClient
+        self.client = MongoClient(kwargs.get("uri"))
+        self.db = self.client[kwargs.get("database")]
     
-    def find(self, filter_criteria):
-        """Find documents based on filter criteria"""
-        return self.collection.find(filter_criteria)
+    def disconnect(self):
+        if self.client:
+            self.client.close()
     
-    def update(self, filter_criteria, update_values):
-        """Update documents in mongodb"""
-        self.collection.update_many(filter_criteria, {'$set': update_values})
+    def execute_query(self, query, params=None):
+        collection = self.db[query.get("collection")]
+        operation = query.get("operation")
 
-    def delete(self, filter_criteria):
-        """Delete documents in mongodb."""
-        self.collection.delete_many(filter_criteria)
+        if operation == "find":
+            return list(collection.find(params))
+        elif operation == "insert_one":
+            return collection.insert_one(params)
+        elif operation == "update_one":
+            return collection.update_one(params["filter"], params["update"])
+        elif operation == "delete_one":
+            return collection.delete_one(params)
+        else:
+            raise ValueError(f"Unsuported MongoDB operation: {operation}")
+    
+    def commit(self):
+        pass #MongoDB is non-transactional by default
+
+    def rollback(self):
+        pass # MongoDB is non-transactional by default

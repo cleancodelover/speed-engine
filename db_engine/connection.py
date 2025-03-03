@@ -1,5 +1,5 @@
 from db_engine.adapters.mongodb_adapter import MongoDBAdapter
-from db_engine.adapters.sql_adapter import SQLAdapter
+from db_engine.adapters.sqlite_adapter import SQLAdapter
 
 class DatabaseConnection:
     def __init__(self, db_type, **kwargs):
